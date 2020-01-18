@@ -5,7 +5,14 @@
 #include <GLFW/glfw3.h>
 
 using namespace std;
-
+void key_press(GLFWwindow* window, int key, int scancode, int action, int mode){
+    
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
+        
+        glfwSetWindowShouldClose(window, GL_TRUE);
+    }
+    
+}
 int main(){
     
     glfwInit();
@@ -16,6 +23,7 @@ int main(){
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     
     GLFWwindow* window = glfwCreateWindow(800, 600, "HELLO WORLD", nullptr, nullptr);
+    glfwSetKeyCallback(window, key_press);
     
     if (window == nullptr){
     cout << "Failed to create GLFW window" << endl;
